@@ -1,0 +1,27 @@
+{
+    "name": "okapon/doctrine-set-type-bundle",
+    "type": "symfony-bundle",
+    "description": "Provides support of MySQL SET type for Doctrine2 in Symfony2 applications.",
+    "keywords": ["bundle", "symfony", "doctrine", "MySQL", "SET", "type", "DBAL"],
+    "homepage": "https://github.com/okapon/DoctrineSetTypeBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yuichi Okada",
+            "email": "yuuichi177@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "symfony/symfony": "~2.3",
+        "doctrine/orm": "~2.3"
+    },
+    "require-dev": {
+        "phake/phake": ">=2.0.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Okapon\\DoctrineSetTypeBundle\\": ""
+        }
+    }
+}

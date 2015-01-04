@@ -1,0 +1,10 @@
+parameters:
+    doctrine_set_type.set_type.class_name: Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType
+    doctrine_set_type.set_type_guesser.class: Okapon\DoctrineSetTypeBundle\Form\Guess\SetTypeGuesser
+
+services:
+    doctrine_set_type.set_type_guesser:
+        class: %doctrine_set_type.set_type_guesser.class%
+        arguments: ["@doctrine", %doctrine.dbal.connection_factory.types%, %doctrine_set_type.set_type.class_name%]
+        tags:
+            - { name: form.type_guesser }
