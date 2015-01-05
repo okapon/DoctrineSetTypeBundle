@@ -32,7 +32,7 @@ The `DoctrineSetTypeBundle` provides support MySQL SET type for Doctrine2 in you
 Using composer
 
 ```
-$ composer require okapon/doctrine-set-type-bundle "0.1.0"
+$ composer require okapon/doctrine-set-type-bundle "0.1.1"
 ```
 
 ## Step 2: Enable the Bundle
