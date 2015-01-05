@@ -40,7 +40,7 @@ class SetTypeValidatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \Symfony\Component\Validator\Exception\MissingOptionsException
      */
-    public function testThrowsExceptionInTargetOptionIsNone()
+    public function testTargetOptionExpected()
     {
         new SetType();
     }
@@ -50,7 +50,7 @@ class SetTypeValidatorTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \Symfony\Component\Validator\Exception\ConstraintDefinitionException
      */
-    public function testThrowsExceptionInNotDefinedTargetClass()
+    public function testTargetSpecifiedByClassNameExpected()
     {
         $constraint = new SetType([
             'target' => null,
@@ -59,6 +59,19 @@ class SetTypeValidatorTest extends \PHPUnit_Framework_TestCase
         $this->setTypeValidator->validate([UserGroupType::GROUP1], $constraint);
     }
 
+    /**
+     * Test that creation of SET Constraint When type class actually does't exist throws Exception
+     *
+     * @expectedException \Okapon\DoctrineSetTypeBundle\Exception\TargetClassNotExistException
+     */
+    public function testTargetIsSpecifiedByExistingClassNameExpected()
+    {
+        $constraint = new SetType([
+            'target' => 'NotExistClassName',
+        ]);
+
+        $this->setTypeValidator->validate([UserGroupType::GROUP1], $constraint);
+    }
 
     /**
      * Test valid parameters

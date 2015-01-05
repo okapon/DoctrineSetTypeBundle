@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints\Choice;
 class SetType extends Choice
 {
     /**
-     * @var string $target Entity
+     * @var string $target validation target class name
      */
     public $target;
 

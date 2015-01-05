@@ -6,6 +6,8 @@ use Symfony\Component\Validator\Constraints\ChoiceValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
+use Okapon\DoctrineSetTypeBundle\Exception\TargetClassNotExistException;
+
 /**
  * SetTypeValidator
  *
@@ -30,8 +32,12 @@ class SetTypeValidator extends ChoiceValidator
             throw new ConstraintDefinitionException('Target is not specified');
         }
 
-        /** @var \Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType $target */
+        /** @var string $target class name of inheriting \Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType */
         $target = $constraint->target;
+        if (!class_exists($target)) {
+            throw new TargetClassNotExistException('Target class not exist.');
+        }
+
         $constraint->choices = $target::getValues();
         $constraint->multiple =true;
 
