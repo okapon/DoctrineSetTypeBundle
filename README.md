@@ -18,7 +18,7 @@ The `DoctrineSetTypeBundle` provides support MySQL SET type for Doctrine2 in you
 
 ## Requirements
 
-* PHP 5.4+
+* PHP 5.5+
 * Symfony 2.5+
 * Doctrine 2.2+
 
@@ -33,7 +33,7 @@ The `DoctrineSetTypeBundle` provides support MySQL SET type for Doctrine2 in you
 Using composer
 
 ```
-$ composer require okapon/doctrine-set-type-bundle "0.1.2"
+$ composer require okapon/doctrine-set-type-bundle "0.2.0"
 ```
 
 ## Step 2: Enable the Bundle
@@ -100,7 +100,7 @@ class UserGroupType extends AbstractSetType
     /**
      * {@inheritdoc}
      */
-     protected $name = 'UserGroupType'; // This is Optional. Automatically registered shord class name. 
+     protected $name = 'UserGroupType'; // This is Optional. Automatically registered shord class name.
 
     /**
      * define your SET type.
@@ -162,9 +162,9 @@ class User
     private $username;
 
     /**
-     * @var array 
+     * @var array
      *
-     * @DoctrineAssert\SetType(target="AppBundle\DBAL\Types\UserGroupType")
+     * @DoctrineAssert\SetType(class="AppBundle\DBAL\Types\UserGroupType")
      * @ORM\Column(name="groups", type="UserGroupType", nullable=true) // mapping_type
      */
     private $groups;
@@ -206,7 +206,7 @@ And also You can validate your type by adding the following annotation.
 
 ```
     /**
-     * @DoctrineAssert\SetType(target="AppBundle\DBAL\Types\UserGroupType")
+     * @DoctrineAssert\SetType(class="AppBundle\DBAL\Types\UserGroupType")
      */
     private $groups;
 ```

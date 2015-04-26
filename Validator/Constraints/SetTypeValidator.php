@@ -28,17 +28,17 @@ class SetTypeValidator extends ChoiceValidator
     public function validate($value, Constraint $constraint)
     {
         /** @var SetType $constraint */
-        if (!$constraint->target) {
+        if (!$constraint->class) {
             throw new ConstraintDefinitionException('Target is not specified');
         }
 
-        /** @var string $target class name of inheriting \Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType */
-        $target = $constraint->target;
-        if (!class_exists($target)) {
+        /** @var string $class class name of inheriting \Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType */
+        $class = $constraint->class;
+        if (!class_exists($class)) {
             throw new TargetClassNotExistException('Target class not exist.');
         }
 
-        $constraint->choices = $target::getValues();
+        $constraint->choices = $class::getValues();
         $constraint->multiple =true;
 
         parent::validate($value, $constraint);

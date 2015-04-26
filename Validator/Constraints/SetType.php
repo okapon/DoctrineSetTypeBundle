@@ -14,15 +14,15 @@ use Symfony\Component\Validator\Constraints\Choice;
 class SetType extends Choice
 {
     /**
-     * @var string $target validation target class name
+     * @var string $class validation target class name
      */
-    public $target;
+    public $class;
 
     /**
      * {@inheritdoc}
      */
     public function getRequiredOptions()
     {
-        return ['target'];
+        return ['class'];
     }
 }

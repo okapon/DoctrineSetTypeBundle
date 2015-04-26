@@ -70,7 +70,7 @@ class SetTypeGuesser extends DoctrineOrmTypeGuesser
         $fullClassName = $this->registeredTypes[$fieldType];
 
         if (!is_subclass_of($fullClassName, $this->parentSetTypeClass)) {
-            throw new InvalidClassSpecifiedException(sprintf('The class "%s" is wrong. You must specify class which inherit "Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType".', $fullClassName));
+            throw new InvalidClassSpecifiedException(sprintf('The class "%s" is wrong. You must specify class which inherit "%s".', $fullClassName, AbstractSetType::class));
         }
 
         // render checkboxes
