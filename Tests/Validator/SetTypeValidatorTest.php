@@ -53,7 +53,7 @@ class SetTypeValidatorTest extends \PHPUnit_Framework_TestCase
     public function testTargetSpecifiedByClassNameExpected()
     {
         $constraint = new SetType([
-            'target' => null,
+            'class' => null,
         ]);
 
         $this->setTypeValidator->validate([UserGroupType::GROUP1], $constraint);
@@ -67,7 +67,7 @@ class SetTypeValidatorTest extends \PHPUnit_Framework_TestCase
     public function testTargetIsSpecifiedByExistingClassNameExpected()
     {
         $constraint = new SetType([
-            'target' => 'NotExistClassName',
+            'class' => 'NotExistClassName',
         ]);
 
         $this->setTypeValidator->validate([UserGroupType::GROUP1], $constraint);
@@ -83,7 +83,7 @@ class SetTypeValidatorTest extends \PHPUnit_Framework_TestCase
     public function testValidParam($param)
     {
         $constraint = new SetType([
-            'target' => 'Okapon\DoctrineSetTypeBundle\Tests\Fixtures\DBAL\Types\UserGroupType'
+            'class' => 'Okapon\DoctrineSetTypeBundle\Tests\Fixtures\DBAL\Types\UserGroupType'
         ]);
 
         $this->setTypeValidator->initialize($this->context);
@@ -117,7 +117,7 @@ class SetTypeValidatorTest extends \PHPUnit_Framework_TestCase
     public function testInvalidTypeParam()
     {
         $constraint = new SetType([
-            'target' => 'Okapon\DoctrineSetTypeBundle\Tests\Fixtures\DBAL\Types\UserGroupType'
+            'class' => 'Okapon\DoctrineSetTypeBundle\Tests\Fixtures\DBAL\Types\UserGroupType'
         ]);
 
         $this->setTypeValidator->initialize($this->context);
@@ -135,7 +135,7 @@ class SetTypeValidatorTest extends \PHPUnit_Framework_TestCase
         $this->context = Phake::mock('Symfony\Component\Validator\Context\ExecutionContext');
 
         $constraint = new SetType([
-            'target' => 'Okapon\DoctrineSetTypeBundle\Tests\Fixtures\DBAL\Types\UserGroupType'
+            'class' => 'Okapon\DoctrineSetTypeBundle\Tests\Fixtures\DBAL\Types\UserGroupType'
         ]);
 
         $message = 'One or more of the given values is invalid.';
