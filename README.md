@@ -6,6 +6,7 @@ The `DoctrineSetTypeBundle` provides support MySQL SET type for Doctrine2 in you
 [![Latest Stable Version](https://poser.pugx.org/okapon/doctrine-set-type-bundle/v/stable.svg)](https://packagist.org/packages/okapon/doctrine-set-type-bundle)
 [![Build Status](https://travis-ci.org/okapon/DoctrineSetTypeBundle.svg?branch=master)](https://travis-ci.org/okapon/DoctrineSetTypeBundle)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/okapon/DoctrineSetTypeBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/okapon/DoctrineSetTypeBundle/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/okapon/DoctrineSetTypeBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/okapon/DoctrineSetTypeBundle/?branch=master)
 
 [![License](https://poser.pugx.org/okapon/doctrine-set-type-bundle/license.svg)](https://packagist.org/packages/okapon/doctrine-set-type-bundle)
 
@@ -81,11 +82,8 @@ doctrine:
 Sample: UserGroupType
 
 This is Sample that user belong multiple groups.
-Then, create UserGroupType to belong.
+Then, create UserGroupType and tetend AbstractSetType.
 
-Create SET type by extending AbstractSetType.
-
-like this.
 ```php
 <?php
 
