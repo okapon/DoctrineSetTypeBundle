@@ -3,10 +3,11 @@
 namespace Okapon\DoctrineSetTypeBundle\Form\Guess;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType;
 use Symfony\Bridge\Doctrine\Form\DoctrineOrmTypeGuesser;
 use Symfony\Component\Form\Guess\Guess;
 use Symfony\Component\Form\Guess\TypeGuess;
+use Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType;
+use Okapon\DoctrineSetTypeBundle\Exception\InvalidClassSpecifiedException;
 
 /**
  * SetTypeGuesser
@@ -69,7 +70,7 @@ class SetTypeGuesser extends DoctrineOrmTypeGuesser
         $fullClassName = $this->registeredTypes[$fieldType];
 
         if (!is_subclass_of($fullClassName, $this->parentSetTypeClass)) {
-            return;
+            throw new InvalidClassSpecifiedException(sprintf('The class "%s" is wrong. You must specify class which inherit "Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType".', $fullClassName));
         }
 
         // render checkboxes
