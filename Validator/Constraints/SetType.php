@@ -25,12 +25,4 @@ class SetType extends Choice
     {
         return ['target'];
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getDefaultOption()
-    {
-        return 'choices';
-    }
 }
