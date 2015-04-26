@@ -5,7 +5,6 @@ namespace Okapon\DoctrineSetTypeBundle\Tests\DBAL\Types;
 use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
 use Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType;
-use Okapon\DoctrineSetTypeBundle\Tests\Fixtures\DBAL\Types\UserGroupType;
 
 /**
  * AbstractSetTypeTest
