@@ -41,6 +41,6 @@ class SetTypeValidator extends ChoiceValidator
         $constraint->choices = $target::getValues();
         $constraint->multiple =true;
 
-        return parent::validate($value, $constraint);
+        parent::validate($value, $constraint);
     }
 }
