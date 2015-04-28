@@ -77,12 +77,13 @@ doctrine:
 
 ## Usage
 
-### Create your SET type
+### Create your SET type class
 
-Sample: UserGroupType
+**Sample: UserGroupType class**
 
-This is Sample that user belong multiple groups.
-Then, create UserGroupType and tetend AbstractSetType.
+This class is Sample that user has multiple groups which is mysql set type.
+
+Then, create UserGroupType and extend AbstractSetType.
 
 ```php
 <?php
@@ -115,7 +116,7 @@ class UserGroupType extends AbstractSetType
 
 ### Register your type
 
-Register UserGroupType. in `config.yml`
+Register UserGroupType in `config.yml`
 
 ```yml
 doctrine:
@@ -125,7 +126,9 @@ doctrine:
             UserGroupType: AppBundle\DBAL\Types\UserGroupType
 ```
 
-###  Create entity which has groups field
+###  Add mapping data to entity
+
+This is annotaion sample.
 
 ```php
 <?php
