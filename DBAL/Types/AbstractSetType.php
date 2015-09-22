@@ -3,6 +3,7 @@
 namespace Okapon\DoctrineSetTypeBundle\DBAL\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Platforms\SqlitePlatform;
 use Doctrine\DBAL\Types\Type;
 
 /**
@@ -77,6 +78,10 @@ abstract class AbstractSetType extends Type
                 $this->getValues()
             )
         );
+
+        if ($platform instanceof SqlitePlatform) {
+            return 'TEXT';
+        }
 
         return sprintf('SET(%s)', $values);
     }
