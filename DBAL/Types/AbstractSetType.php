@@ -3,7 +3,7 @@
 namespace Okapon\DoctrineSetTypeBundle\DBAL\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Platforms\SqlitePlatform;
+use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
 
 /**
@@ -79,8 +79,8 @@ abstract class AbstractSetType extends Type
             )
         );
 
-        if ($platform instanceof SqlitePlatform) {
-            return 'TEXT';
+        if (!$platform instanceof MySqlPlatform) {
+            return $platform->getClobTypeDeclarationSQL($fieldDeclaration);
         }
 
         return sprintf('SET(%s)', $values);
