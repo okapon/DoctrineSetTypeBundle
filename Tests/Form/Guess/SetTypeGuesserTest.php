@@ -48,9 +48,6 @@ class SetTypeGuesserTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->guesser->guessType($class, $property));
     }
 
-    /**
-     * @expectedException Okapon\DoctrineSetTypeBundle\Exception\InvalidClassSpecifiedException
-     */
     public function testThrowsException()
     {
         $managerRegistory = Phake::mock('Doctrine\Common\Persistence\ManagerRegistry');
@@ -70,7 +67,7 @@ class SetTypeGuesserTest extends \PHPUnit_Framework_TestCase
         Phake::when($classMetadata)->getTypeOfField($property)->thenReturn('InvalidType');
 
         Phake::when($guesser)->getMetadata($class)->thenReturn([$classMetadata, 'default']);
-        $guesser->guessType($class, $property);
+        $this->assertNull($guesser->guessType($class, $property));
     }
 
     public function testGessingSetType()
