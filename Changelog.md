@@ -7,6 +7,7 @@ Changelog
 This release is final to support Symfony2.5
 
 * Fix the FormTypeGuesser to work with other FormTypes #3
+* Change Sql Declaration Logic to use other platform #2
 
 ### 0.3.0 (2015-04-29)
 
