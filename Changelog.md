@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 0.4.0 (2015-10-14)
+
+Change support versions.
+The requirements PHP5.5+, Symfony2.6+,
+
+* Add several versions(PHP, hhvm and Symfony) tesing.
 
 ### 0.3.1 (2015-10-14)
 
