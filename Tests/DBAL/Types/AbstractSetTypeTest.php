@@ -2,6 +2,7 @@
 
 namespace Okapon\DoctrineSetTypeBundle\Tests\DBAL\Types;
 
+use Phake;
 use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
 use Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType;
@@ -111,10 +112,30 @@ class AbstractSetTypeTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSqlDeclaration()
     {
-        $fieldDeclaration = ['name' => 'position'];
+        $fieldDeclaration = ['name' => 'groups'];
         $platform  = new MySqlPlatform();
         $expected = "SET('group1', 'group2', 'group3')";
 
         $this->assertEquals($expected, $this->type->getSqlDeclaration($fieldDeclaration, $platform));
+    }
+
+    public function testGetSqlDeclarationIfNotMySqlPlatform()
+    {
+        $fieldDeclaration = ['name' => 'groups'];
+        $platform = Phake::mock('Doctrine\DBAL\Platforms\AbstractPlatform');
+        Phake::when($platform)->getClobTypeDeclarationSQL($fieldDeclaration)->thenReturn('CLOB');
+
+        $this->assertEquals('CLOB', $this->type->getSqlDeclaration($fieldDeclaration, $platform));
+    }
+
+    public function testRequiresSQLCommentHint()
+    {
+        $platform = Phake::mock('Doctrine\DBAL\Platforms\AbstractPlatform');
+        $this->assertTrue($this->type->requiresSQLCommentHint($platform));
+    }
+
+    public function testGetName()
+    {
+        $this->assertEquals('UserGroupType', $this->type->getName());
     }
 }
