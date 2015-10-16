@@ -207,7 +207,7 @@ $user->setGroups([UserGroupType::GROUP1, UserGroupType::GROUP2]);
 
 And also You can validate your type by adding the following annotation.
 
-```
+```php
     /**
      * @DoctrineAssert\SetType(class="AppBundle\DBAL\Types\UserGroupType")
      */
@@ -216,16 +216,20 @@ And also You can validate your type by adding the following annotation.
 
 ### Building the form
 
-Input `null` to the Second argument.
+Pass `null` to the Second argument.
 
-[SetTypeGuesser](https://github.com/okapon/DoctrineSetTypeBundle/blob/master/Form/Guess/SetTypeGuesser.php) render the field as checkboxes.
+[SetTypeGuesser](https://github.com/okapon/DoctrineSetTypeBundle/blob/master/Form/Guess/SetTypeGuesser.php) extends ChoiseType and render the field as checkboxes.
+
+So, you can use choice field type option. (see [choice Field Type](http://symfony.com/doc/current/reference/forms/types/choice.html))
+
 
 ```php
 $builder->add('groups', null, [
-    'choices' => UserGroupType::getChoices()
     'required' => true,
+    'invalid_message' => 'Given values are invalid!!'
 ]);
 ```
+
 
 ### Doctrine migrations
 
