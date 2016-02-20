@@ -106,7 +106,7 @@ class UserGroupType extends AbstractSetType
      */
     public static function getChoices()
     {
-        return User::getGroupTitles();
+        return User::getGroupsLabels();
     }
 }
 ```
@@ -201,7 +201,19 @@ class User
     /**
      * @return string[]
      */
-    public static function getGroupTitles()
+    public static function getGroupsValues()
+    {
+        return [
+            self::GROUP1,
+            self::GROUP2,
+            self::GROUP3,
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public static function getGroupsLabels()
     {
         return [
             self::GROUP1 => 'Group 1',
