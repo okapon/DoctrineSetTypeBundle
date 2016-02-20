@@ -233,7 +233,7 @@ And also You can validate your type by adding the following annotation.
 
 ```php
     /**
-     * @DoctrineAssert\SetType(class="AppBundle\DBAL\Types\UserGroupType")
+     * @Assert\Choice(callback = "getGroupsValues")
      */
     private $groups;
 ```
