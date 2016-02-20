@@ -168,7 +168,7 @@ class User
      * @var array
      *
      * @ORM\Column(name="groups", type="UserGroupType", nullable=true) // mapping_type
-     * @Assert\Choice(callback = "getGroupsValues")
+     * @Assert\Choice(callback = "getGroupsValues", multiple=true)
      */
     private $groups;
 
@@ -233,7 +233,7 @@ And also You can validate your type by adding the following annotation.
 
 ```php
     /**
-     * @Assert\Choice(callback = "getGroupsValues")
+     * @Assert\Choice(callback = "getGroupsValues", multiple=true)
      */
     private $groups;
 ```
