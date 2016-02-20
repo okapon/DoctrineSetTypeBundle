@@ -94,23 +94,20 @@ use Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType;
 
 class UserGroupType extends AbstractSetType
 {
-    const GROUP1 = 'group1';
-    const GROUP2 = 'group2';
-    const GROUP3 = 'group3';
-
     /**
      * {@inheritdoc}
      */
      protected $name = 'UserGroupType'; // This is Optional. Automatically registered shord class name.
 
     /**
-     * define your SET type.
+     * Define your SET type.
+     *
+     * @return array
      */
-    protected static $choices = [
-        self::GROUP1 => 'Group 1',
-        self::GROUP2 => 'Group 2',
-        self::GROUP3 => 'Group 3',
-    ];
+    public static function getChoices()
+    {
+        return User::getGroupTitles();
+    }
 }
 ```
 
@@ -148,6 +145,10 @@ use AppBundle\DBAL\Types\UserGroupType;
  */
 class User
 {
+    const GROUP1 = 'group1';
+    const GROUP2 = 'group2';
+    const GROUP3 = 'group3';
+
     /**
      * @var integer
      *
@@ -195,6 +196,18 @@ class User
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    /**
+     * @return string[]
+     */
+    public static function getGroupTitles()
+    {
+        return [
+            self::GROUP1 => 'Group 1',
+            self::GROUP2 => 'Group 2',
+            self::GROUP3 => 'Group 3',
+        ];
     }
 }
 ```
