@@ -134,7 +134,6 @@ namespace AppBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Okapon\DoctrineSetTypeBundle\Validator\Constraints as DoctrineAssert;
 use AppBundle\DBAL\Types\UserGroupType;
 
 /**
@@ -168,8 +167,8 @@ class User
     /**
      * @var array
      *
-     * @DoctrineAssert\SetType(class="AppBundle\DBAL\Types\UserGroupType")
      * @ORM\Column(name="groups", type="UserGroupType", nullable=true) // mapping_type
+     * @Assert\Choice(callback = "getGroupsValues")
      */
     private $groups;
 
