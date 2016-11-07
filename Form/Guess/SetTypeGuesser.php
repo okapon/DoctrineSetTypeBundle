@@ -4,10 +4,12 @@ namespace Okapon\DoctrineSetTypeBundle\Form\Guess;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Form\DoctrineOrmTypeGuesser;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Guess\Guess;
 use Symfony\Component\Form\Guess\TypeGuess;
 use Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType;
 use Okapon\DoctrineSetTypeBundle\Exception\InvalidClassSpecifiedException;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * SetTypeGuesser
@@ -74,13 +76,21 @@ class SetTypeGuesser extends DoctrineOrmTypeGuesser
         }
 
         // render checkboxes
+        if (Kernel::MAJOR_VERSION == 2) {
+
+        }
         $parameters = [
-            'choices'  => $fullClassName::getChoices(),
+            'choices'  => array_flip($fullClassName::getChoices()),
             'expanded' => true,
             'multiple' => true,
             'required' => !$metadata->isNullable($property),
         ];
 
-        return new TypeGuess('choice', $parameters, Guess::VERY_HIGH_CONFIDENCE);
+        if (Kernel::MAJOR_VERSION == 2) {
+            $parameters['choices'] = $fullClassName::getChoices();
+            return new TypeGuess('choice', $parameters, Guess::VERY_HIGH_CONFIDENCE);
+        }
+
+        return new TypeGuess(ChoiceType::class, $parameters, Guess::VERY_HIGH_CONFIDENCE);
     }
 }
