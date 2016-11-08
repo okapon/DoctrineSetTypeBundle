@@ -76,9 +76,6 @@ class SetTypeGuesser extends DoctrineOrmTypeGuesser
         }
 
         // render checkboxes
-        if (Kernel::MAJOR_VERSION == 2) {
-
-        }
         $parameters = [
             'choices'  => array_flip($fullClassName::getChoices()),
             'expanded' => true,
