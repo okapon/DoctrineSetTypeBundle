@@ -95,23 +95,20 @@ use Okapon\DoctrineSetTypeBundle\DBAL\Types\AbstractSetType;
 
 class UserGroupType extends AbstractSetType
 {
-    const GROUP1 = 'group1';
-    const GROUP2 = 'group2';
-    const GROUP3 = 'group3';
-
     /**
      * {@inheritdoc}
      */
      protected $name = 'UserGroupType'; // This is Optional. Automatically registered shord class name.
 
     /**
-     * define your SET type.
+     * Define your SET type.
+     *
+     * @return array
      */
-    protected static $choices = [
-        self::GROUP1 => 'Group 1',
-        self::GROUP2 => 'Group 2',
-        self::GROUP3 => 'Group 3',
-    ];
+    public static function getChoices()
+    {
+        return User::getGroupsLabels();
+    }
 }
 ```
 
@@ -162,7 +159,6 @@ namespace AppBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Okapon\DoctrineSetTypeBundle\Validator\Constraints as DoctrineAssert;
 use AppBundle\DBAL\Types\UserGroupType;
 
 /**
@@ -173,6 +169,10 @@ use AppBundle\DBAL\Types\UserGroupType;
  */
 class User
 {
+    const GROUP1 = 'group1';
+    const GROUP2 = 'group2';
+    const GROUP3 = 'group3';
+
     /**
      * @var integer
      *
@@ -192,8 +192,8 @@ class User
     /**
      * @var array
      *
-     * @DoctrineAssert\SetType(class="AppBundle\DBAL\Types\UserGroupType")
      * @ORM\Column(name="groups", type="UserGroupType", nullable=true) // mapping_type
+     * @Assert\Choice(callback = "getGroupsValues", multiple=true)
      */
     private $groups;
 
@@ -221,6 +221,30 @@ class User
     {
         return $this->groups;
     }
+
+    /**
+     * @return string[]
+     */
+    public static function getGroupsValues()
+    {
+        return [
+            self::GROUP1,
+            self::GROUP2,
+            self::GROUP3,
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public static function getGroupsLabels()
+    {
+        return [
+            self::GROUP1 => 'Group 1',
+            self::GROUP2 => 'Group 2',
+            self::GROUP3 => 'Group 3',
+        ];
+    }
 }
 ```
 
@@ -234,7 +258,7 @@ And also You can validate your type by adding the following annotation.
 
 ```php
     /**
-     * @DoctrineAssert\SetType(class="AppBundle\DBAL\Types\UserGroupType")
+     * @Assert\Choice(callback = "getGroupsValues", multiple=true)
      */
     private $groups;
 ```

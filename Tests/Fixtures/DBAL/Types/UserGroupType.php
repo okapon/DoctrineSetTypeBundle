@@ -16,11 +16,16 @@ class UserGroupType extends AbstractSetType
      protected $name = 'UserGroupType';
 
     /**
-     * {@inheritdoc}
+     * Get map of available SET type, key and label
+     *
+     * @return array Values for the SET field
      */
-    protected static $choices = [
-        self::GROUP1 => 'Group 1',
-        self::GROUP2 => 'Group 2',
-        self::GROUP3 => 'Group 3',
-    ];
+    public static function getChoices()
+    {
+        return [
+            self::GROUP1 => 'Group 1',
+            self::GROUP2 => 'Group 2',
+            self::GROUP3 => 'Group 3',
+        ];
+    }
 }

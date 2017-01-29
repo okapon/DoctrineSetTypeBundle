@@ -21,12 +21,6 @@ abstract class AbstractSetType extends Type
     protected $name = '';
 
     /**
-     * @var array $choices Map of available SET type, key and label
-     * @static
-     */
-    protected static $choices = [];
-
-    /**
      * {@inheritdoc}
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
@@ -38,7 +32,7 @@ abstract class AbstractSetType extends Type
         $diff = array_diff($value, $this->getValues());
         if (count($diff) > 0) {
             throw new \InvalidArgumentException(sprintf(
-                    'Invalid value "%s". It is not defined in "%s::$choices"',
+                    'Invalid value "%s". It is not defined in "%s::getChoices()"',
                     implode(',', $diff),
                     get_class($this)
                 )
@@ -103,13 +97,13 @@ abstract class AbstractSetType extends Type
     }
 
     /**
-     * Get choices Label for the Set form field type
+     * Get map of available SET type, key and label
      *
      * @return array Values for the SET field
      */
     public static function getChoices()
     {
-        return static::$choices;
+        return [];
     }
 
     /**
