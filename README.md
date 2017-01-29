@@ -4,6 +4,7 @@ DoctrineSetTypeBundle
 The `DoctrineSetTypeBundle` provides support MySQL SET type for Doctrine2 in your Symfony2 or Symfony3 application.
 
 [![Latest Stable Version](https://poser.pugx.org/okapon/doctrine-set-type-bundle/v/stable.svg)](https://packagist.org/packages/okapon/doctrine-set-type-bundle)
+[![Total Downloads](https://poser.pugx.org/okapon/doctrine-set-type-bundle/downloads)](https://packagist.org/packages/okapon/doctrine-set-type-bundle)
 [![Build Status](https://travis-ci.org/okapon/DoctrineSetTypeBundle.svg?branch=master)](https://travis-ci.org/okapon/DoctrineSetTypeBundle)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/okapon/DoctrineSetTypeBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/okapon/DoctrineSetTypeBundle/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/okapon/DoctrineSetTypeBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/okapon/DoctrineSetTypeBundle/?branch=master)
@@ -114,14 +115,26 @@ class UserGroupType extends AbstractSetType
 }
 ```
 
-Or you can define set type definition in entity by overrideing `getChoices()` method. 
+Or you may define set type definition in entity by overrideing `AbstractSetType::getChoices()` method. 
 
-```
+```php
 class UserGroupType extends AbstractSetType
 {
     public static function getChoices()
     {
         return User::getGroupChoices();
+    }
+}
+
+class User
+{
+    public static function getGroupChoices()
+    {
+        return [
+            self::GROUP1 => 'Group 1',
+            self::GROUP2 => 'Group 2',
+            self::GROUP3 => 'Group 3',
+        ];
     }
 }
 ```
