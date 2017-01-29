@@ -114,6 +114,18 @@ class UserGroupType extends AbstractSetType
 }
 ```
 
+Or you can define set type definition in entity by overrideing `getChoices()` method. 
+
+```
+class UserGroupType extends AbstractSetType
+{
+    public static function getChoices()
+    {
+        return User::getGroupChoices();
+    }
+}
+```
+
 ### Register your type
 
 Register UserGroupType in `config.yml`
