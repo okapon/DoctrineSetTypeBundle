@@ -1,7 +1,7 @@
 DoctrineSetTypeBundle
 =====================
 
-The `DoctrineSetTypeBundle` provides support MySQL SET type for Doctrine2 in your Symfony2 application.
+The `DoctrineSetTypeBundle` provides support MySQL SET type for Doctrine2 in your Symfony2 or Symfony3 application.
 
 [![Latest Stable Version](https://poser.pugx.org/okapon/doctrine-set-type-bundle/v/stable.svg)](https://packagist.org/packages/okapon/doctrine-set-type-bundle)
 [![Build Status](https://travis-ci.org/okapon/DoctrineSetTypeBundle.svg?branch=master)](https://travis-ci.org/okapon/DoctrineSetTypeBundle)
@@ -12,15 +12,15 @@ The `DoctrineSetTypeBundle` provides support MySQL SET type for Doctrine2 in you
 
 ## Features
 
-* SET type mapping
+* SET type mapping for mysql
 * SET type validation
 * Doctrine migrations
 
 ## Requirements
 
-* PHP 5.5+
-* Symfony 2.6+
-* Doctrine 2.3+
+* PHP ~5.5
+* Symfony ~2.6 or ~3.0
+* Doctrine ~2.3
 
 ## Supported platforms
 
