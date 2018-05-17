@@ -18,10 +18,10 @@
         "symfony/http-kernel": "~2.6|~3.0",
         "symfony/form": "~2.6|~3.0",
         "symfony/validator": "~2.6|~3.0",
-        "symfony/yaml": "~2.6|~3.0",
         "doctrine/orm": "~2.3"
     },
     "require-dev": {
+        "phpunit/phpunit": ">=4.5.0",
         "phake/phake": ">=2.0.0@dev"
     },
     "autoload": {
